@@ -1,11 +1,11 @@
 import Footer from './component/footer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/home';
-import Add from './pages/add';
-import Search from './pages/search';
-import User from './pages/user';
-import Login from './pages/login';
-import Assign from './pages/assign';
+import Home from './pages/home/home';
+import Add from './pages/add/add';
+import Search from './pages/search/search';
+import User from './pages/user/user';
+import Login from './pages/login/login';
+import Assign from './pages/login/assign';
 
 function App() {
   return (

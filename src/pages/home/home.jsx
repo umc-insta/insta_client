@@ -1,9 +1,13 @@
+import styled from 'styled-components';
 
+const Topbar = styled.div`
+    height: 5vw;
+`;
 
 function Home () {
     return (
         <div>
-            <h1>Home</h1>
+            <Topbar></Topbar>
         </div>
     )
 }

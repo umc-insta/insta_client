@@ -9,18 +9,20 @@ import Assign from './pages/login/assign';
 
 function App() {
   return (
-    <div className="App" style={{width: '100%', height: '95vh' }}>
-      <Router>
-        <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/add' element={<Add />} />
-        <Route path='/search' element={<Search />} />
-        <Route path='/user' element={<User />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/assign' element={<Assign />} />
-        </Routes>
-      </Router>
-      <Footer style={{height: '5vh'}} />
+    <div className="App">
+      <div style={{paddingBottom : '5vh'}}>
+        <Router >
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/add' element={<Add />} />
+            <Route path='/search' element={<Search />} />
+            <Route path='/user' element={<User />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/assign' element={<Assign />} />
+          </Routes>
+        </Router>
+      </div>
+      <Footer style={{ height: '5vh' }} />
     </div>
   );
 }

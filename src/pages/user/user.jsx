@@ -193,6 +193,12 @@ function User({user}) {
                 alt = ""
               />
             </button>
+          <div style ={{display:"flex",justifyContent:"flex-start"}}>
+          <p style = {{marginTop:"2%",
+        marginLeft:"2%"}}>
+            <b>{userData.userDto.userName}</b>
+          </p>
+        </div>
           </div>
         </UserProfile>
         <div style ={{display:"flex",justifyContent:"center"}}>

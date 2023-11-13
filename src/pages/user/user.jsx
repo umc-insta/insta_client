@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Picture from "./Picstures";
+import Pictures from '../../component/pictures';
 
 const Body = styled.div`
   margin: 0vw 20vw 0vw 20vw;
@@ -183,7 +183,7 @@ function User() {
           </TransparentBtn>
         </div>
 
-        <Picture posts={userData.posts} /> 
+        <Pictures posts={userData.posts} /> 
       </div>
     </Body>
   );

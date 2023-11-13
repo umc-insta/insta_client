@@ -23,11 +23,7 @@ export default function Pictures(props) {
 
   return (
     <Container>
-      {posts.map((post) => (
-        <PictureContainer key={post[0]}>
-          <Picture src={post[1]} alt="사진" />
-        </PictureContainer>
-      ))}
-    </Container>
+    <PictureContainer></PictureContainer>
+  </Container>
   );
 }

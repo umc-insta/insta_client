@@ -82,7 +82,7 @@ function Search() {
                     <Button key={index}>
                         <img src={user.profileSrc} style={{ height: "3rem", width: "3rem", borderRadius: "100%", margin: "0 5% 0 5%" }}></img>
                         <div>
-                            <p style={{margin : 0, }}>{user.user_id}</p>
+                            <p style={{margin : 0 }}>{user.user_id}</p>
                             <p style={{margin : 0, color: "grey", display: "flex", alignItems: "flex-start", opacity: 0.7}}>{user.user_nickname}</p>
                         </div>
                     </Button>

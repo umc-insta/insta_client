@@ -62,13 +62,6 @@ const Feed = ({ UserProfile }) => {
         }
     };
 
-    const changeShowComment = () => {
-        setShowComment(true);
-        console.log("clicked");
-
-    }
-
-
     return (
         <div>
             <div>
@@ -85,7 +78,7 @@ const Feed = ({ UserProfile }) => {
                 <Bottom>
                     <Div>
                         <img src={image} style={{ height: "3vh", marginRight: "20%" }} onClick={changeFavorite} />
-                        <img src="./icons/speech_bubble.png" style={{ height: "3vh", marginRight: "20%" }} onClick={changeShowComment} />
+                        <img src="./icons/speech_bubble.png" style={{ height: "3vh", marginRight: "20%" }} onClick={() => setShowComment(true)} />
                         <img src="./icons/share.png" style={{ height: "3vh", marginRight: "20%" }} />
                     </Div>
                     <Div>
@@ -100,7 +93,7 @@ const Feed = ({ UserProfile }) => {
                     )}
                 </Content>
             </div>
-            {showComment && <CommentList comments={UserProfile.comments}/>}
+            {showComment && <CommentList UserProfile={UserProfile} setShowComment={setShowComment}/>}
         </div>
     )
 

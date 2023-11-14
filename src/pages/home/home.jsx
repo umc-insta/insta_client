@@ -34,6 +34,7 @@ function Home() {
         "profileSrc": "./suzy/suzy_profile.jpeg",
         "photo_url": "./suzy/suzy_feed.jpeg",
         "content": "인간의 지능과 기술의 발전으로 현대 사회는 예전과는 다른 모습으로 진화했습니다. 정보의 공유는 클릭 한 번으로 이뤄지며, 세계 각지의 사람들이 온라인을 통해 연결되어 있습니다. 이로 인해 새로운 산업과 직업이 등장하고, 일상 생활에서 기술의 역할은 더이상 무시할 수 없는 요소가 되었습니다. ",
+        "comments": []
     }]
 
     return (

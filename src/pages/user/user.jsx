@@ -3,13 +3,12 @@ import axios from "axios";
 import styled from "styled-components";
 import Pictures from '../../component/Pictures';
 
-
 const Body = styled.div`
-  margin: 0vw 20vw 0vw 20vw;
 `;
 
+
 const Topbar = styled.div`
-  height: 5vw;
+  height: 50px; 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,22 +23,21 @@ const Right = styled.div`
   justify-content: flex-end;
 `;
 
+
 const UserProfile = styled.div`
-  height: 25vh;
   display: flex;
   justify-content: space-around;
-  margin: 2vh;
+  margin: 20px; 
 `;
 
 const ProfileImage = styled.img`
-  width: 15vw;
-  height: 15vh;
+  width: 150px; 
+  height: 150px; 
   border-radius: 50%;
-  margin-right: 3vw;
+  margin-right: 30px; 
   border-style: solid;
   border-color: #e2e2e2;
 `;
-
 const TransparentBtn = styled.button`
   background: none;
   border: none;
@@ -130,7 +128,7 @@ function User() {
           </div>
         </UserProfile>
         <div>
-          <p>
+          <p style = {{display : "flex" ,justifyContent: "flex-end",marginRight:"20%"}}>
             <b>userData.usernickname</b>
           </p>
         </div>

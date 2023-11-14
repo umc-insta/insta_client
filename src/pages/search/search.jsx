@@ -77,9 +77,9 @@ function Search() {
                 <img src="./icons/magnifying.png" style={{ width: "5vw", height: "5wh", marginRight: "2%" }} />
                 <Input type="text" placeholder="검색" onChange={changeUserNickName}></Input>
             </Div>
-            {userNickName && searchList.map((user) => {
+            {userNickName && searchList.map((user, index) => {
                 return (
-                    <Button>
+                    <Button key={index}>
                         <img src={user.profileSrc} style={{ height: "3rem", width: "3rem", borderRadius: "100%", margin: "0 5% 0 5%" }}></img>
                         <div>
                             <p style={{margin : 0, }}>{user.user_id}</p>

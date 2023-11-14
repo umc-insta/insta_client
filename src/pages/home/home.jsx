@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Feed from '../../component/feed';
+import { Link } from 'react-router-dom';
 
 const Topbar = styled.div`
     height: 5vh;
@@ -28,7 +29,9 @@ function Home() {
             <Topbar>
                 <img src="instagram_logo.png" style={{ margin: "0.5%", height: "90%" }} />
                 <div style={{ margin: "0.5%", height: "90%"}}>
+                    <Link to='./add'>
                     <img src="./icons/add.png" style={{ height: "100%", padding: "5%" }}></img>
+                    </Link>
                 </div>
             </Topbar>
             <div>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Pictures from '../../component/pictures';
+import Pictures from '../../component/Pictures';
+
 
 const Body = styled.div`
   margin: 0vw 20vw 0vw 20vw;
@@ -45,7 +46,7 @@ const TransparentBtn = styled.button`
 `;
 
 function User() {
-  const [userData, setUserData] = useState({ articles: [] });
+  /*const [userData, setUserData] = useState({ posts: [] });
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -61,7 +62,7 @@ function User() {
     };
 
     fetchUserData();
-  }, []);
+  }, []); */
 
   return (
     <Body>
@@ -79,7 +80,7 @@ function User() {
           >
             <img
               style={{ width: "50%", height: "30%" }}
-              src="/free-icon-backward.png"
+              src="./user_icons/free-icon-backward.png"
               alt="뒤로가기"
             />
           </button>
@@ -88,10 +89,10 @@ function User() {
       <div>
         <UserProfile>
           <div>
-            <ProfileImage src={userData.profile_img} alt="Profile" />
+            <ProfileImage src={"./user_icons/user (1).png"} alt="Profile" />
           </div>
           <div>
-            <h2>{userData.username}</h2>
+            <h2>userData.username</h2>
             <button
               style={{
                 border: "none",
@@ -130,7 +131,7 @@ function User() {
         </UserProfile>
         <div>
           <p>
-            <b>{userData.usernickname}</b>
+            <b>userData.usernickname</b>
           </p>
         </div>
         <hr />
@@ -147,7 +148,7 @@ function User() {
         </Topbar>
         <Topbar style={{ justifyContent: "space-around" }}>
           <Left>
-            <p>{userData.length}</p>
+            <p>10</p>
           </Left>
           <Left>
             <p>0</p>
@@ -182,8 +183,8 @@ function User() {
             />
           </TransparentBtn>
         </div>
-
-        <Pictures posts={userData.posts} /> 
+        <Pictures></Pictures>
+        {/*<Pictures posts = {userData.posts}></Pictures> */}
       </div>
     </Body>
   );

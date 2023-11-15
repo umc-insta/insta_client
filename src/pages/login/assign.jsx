@@ -1,41 +1,54 @@
-
+import styled from 'styled-components';
+import { Card, LoginCard, AssignCard, LoginBtn } from './login';
+import { Link } from 'react-router-dom';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
 
 function Assign() {
+    const [isDisable, setIsDisable] = useState("disabled");
     return (
-        <div>
-            <div class="title">
-                <h1>회원 가입</h1>
-            </div>
-            <form style={{display: "flex", flexDirection: "column"}}>
-                <label>
-                    이름<br />
-                    <input id="name" />
-                    {/* <p id="name_error">필수 입력 항목입니다!</p> */}
-                </label>
-                <label>
-                    닉네임<br />
-                    <input id="nickname" />
-                    {/* <p id="nickname_error">닉네임은 2~5글자로 구성해주세요!</p> */}
-                </label>
-                <label>
-                    이메일<br />
-                    <input id="email" />
-                    {/* <p id="email_error">올바른 메일 형식이 아닙니다!</p> */}
-                </label>
-                <label>
-                    비밀번호<br />
-                    <input id="password" type="password" />
-                    {/* <p id="password_error">영어+숫자+특수문자를 조합하여 작성해주세요.</p> */}
-                </label>
-                <label>
-                    비밀번호 확인<br />
-                    <input id="check" type="password" />
-                    {/* <p id="check_error">비밀번호가 일치하지 않습니다.</p> */}
-                </label>
-                <div class="button">
-                    <button id="submit" disabled="">가입하기</button>
-                </div>
-            </form>
+        <Card>
+            <LoginCard>
+                <img src="./instagram_logo.png" style={{ width: "60%", margin: "5% 0 5% 0" }} />
+                <p style={{fontSize:"0.8rem"}}>친구들의 사진과 동영상을 보려면 가입하세요.</p>
+                <form style={{ display: "flex", flexDirection: "column" }}>
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="휴대폰 번호 또는 이메일 주소"
+                        className="mb-3"
+                        id="floatingLabel"
+                    >
+                        <Form.Control type="email" placeholder="name@example.com" />
+                    </FloatingLabel>
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="성명"
+                        className="mb-3"
+                        id="floatingLabel"
+                    >
+                        <Form.Control type="email" placeholder="name@example.com" />
+                    </FloatingLabel>
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="사용자 이름"
+                        className="mb-3"
+                        id="floatingLabel"
+                    >
+                        <Form.Control type="email" placeholder="name@example.com" />
+                    </FloatingLabel>
+                    <FloatingLabel controlId="floatingPassword" label="비밀번호" id="floatingLabel" >
+                        <Form.Control type="password" placeholder="Password" />
+                    </FloatingLabel>
+                        <LoginBtn id="submit" disabled={isDisable}>가입하기</LoginBtn>
+                </form>
+            </LoginCard>
+            <AssignCard style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                <span style={{ fontSize: "0.8rem" }}>계정이 있으신가요? </span>
+                <Link to="/">
+                    <button style={{ background: "transparent", border: "none", fontSize: "0.8rem", color: "#00aeff", fontWeight: "bold" }}>로그인</button>
+                </Link>
+            </AssignCard>
             {/* <div id="success_back" style={{display: "none"}}>
                 <div id="success">
                     <div id="success_main">
@@ -47,7 +60,7 @@ function Assign() {
                     </div>
                 </div>
             </div> */}
-        </div>
+        </Card>
     )
 }
 

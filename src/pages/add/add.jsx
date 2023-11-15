@@ -45,8 +45,8 @@ function Add({userInfor}) {
     }
 
     useEffect (() => {
-        console.log(cont);
-    }, [cont])
+        console.log(imgFile);
+    }, [imgFile])
 
     return (
         <div>

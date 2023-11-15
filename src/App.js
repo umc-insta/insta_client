@@ -7,8 +7,10 @@ import Search from './pages/search/search';
 import User from './pages/user/user';
 import Login from './pages/login/login';
 import Assign from './pages/login/assign';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const [loginSuccess, setLoginSuccess] = useState(false);
   const userInfor = {
     "user_id" : "1234", 
     "usernickname": "ajoujob",
@@ -45,18 +47,20 @@ function App() {
   return (
     <div className="App">
       <div style={{paddingBottom : '5vh'}}>
-        <Router >
+        <Router>
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/home' element={<Home />} />
             <Route path='/add' element={<Add userInfor = {userInfor} />} />
             <Route path='/search' element={<Search />} />
             <Route path='/user' element={<User />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/' element={<Login setLoginSuccess={setLoginSuccess} />} />
             <Route path='/assign' element={<Assign />} />
           </Routes>
         </Router>
       </div>
+      {loginSuccess &&
       <Footer style={{ height: '5vh' }} />
+}
     </div>
   );
 }

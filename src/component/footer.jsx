@@ -8,7 +8,7 @@ function Footer() {
             <Container>
                 <Navbar.Collapse style={{ display: 'flex', justifyContent: 'center' }}>
                     <Nav>
-                        <Nav.Link href="/" style={{ width: '22vw', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1%' }}>
+                        <Nav.Link href="/home" style={{ width: '22vw', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1%' }}>
                                 <img style={{ width: '35%'}} src="./icons/home.png" />
                         </Nav.Link>
                         <Nav.Link href="/search" style={{ width: '22vw', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1%' }}>

@@ -6,6 +6,7 @@ const Topbar = styled.div`
     height: 5vh;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     font-weight: bold;
     margin-bottom: 3%;
@@ -44,17 +45,17 @@ function Add({userInfor}) {
     }
 
     useEffect (() => {
-        console.log(cont);
-    }, [cont])
+        console.log(imgFile);
+    }, [imgFile])
 
     return (
         <div>
             <Topbar>
                 <Link to="/">
-                    <p style={{ margin: "0 1% 0 3%", display: "inline" }}>X</p>
+                    <p style={{ margin: "0.5rem", display: "inline" }}>X</p>
                 </Link>
-                <p style={{ display: "inline" }}>새 게시물</p>
-                <p style={{ display: "inline", marginRight: "3%" }}>공유하기</p>
+                <span>새 게시물</span>
+                <span style={{ marginRight: "3%" }}>공유하기</span>
             </Topbar>
             {!imgFile && <form>
                 <label htmlFor="profileImg">이미지 선택</label>

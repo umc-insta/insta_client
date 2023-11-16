@@ -68,7 +68,7 @@ const Feed = ({ UserProfile }) => {
                 <Top>
                     <Div>
                         <img src={UserProfile.profileSrc} style={{ height: "2rem", width: "2rem", borderRadius: "100%", margin: "0 5% 0 5%" }}></img>
-                        <p style={{ margin: "0" }}>{UserProfile.nickname}</p>
+                        <p style={{ margin: "0", fontSize: "1.2rem"}}>{UserProfile.nickname}</p>
                     </Div>
                     <Div>
                         <img src="./icons/threeDot.png" style={{ height: "1rem", width: "1rem", paddingRight: "5%" }} />

@@ -42,15 +42,15 @@ function Home() {
             <Topbar>
                 <img src="instagram_logo.png" style={{ margin: "0.5%", height: "90%" }} />
                 <div style={{ margin: "0.5%", height: "90%" }}>
-                    <Link to='./add'>
+                    <Link to='/add'>
                         <img src="./icons/add.png" style={{ height: "100%", padding: "5%" }}></img>
                     </Link>
                 </div>
             </Topbar>
             <div>
-                {UserProfile.map((User) => {
+                {UserProfile.map((User, index) => {
                     return (
-                        <Feed UserProfile={User} />)
+                        <Feed UserProfile={User} key={index} />)
                 })}
             </div>
         </div>

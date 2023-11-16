@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   const [loginSuccess, setLoginSuccess] = useState(false);
   const userInfor = {
-    "user_id" : "1234", 
+    "user_id": "1234",
     "usernickname": "ajoujob",
     "userProfileUrl": "./suzy/suzy_profile.jpeg",
     "username": "사용자이름",
@@ -46,21 +46,21 @@ function App() {
 
   return (
     <div className="App">
-      <div style={{paddingBottom : '5vh'}}>
+      <div style={{ paddingBottom: '5vh' }}>
         <Router>
           <Routes>
             <Route path='/home' element={<Home />} />
-            <Route path='/add' element={<Add userInfor = {userInfor} />} />
+            <Route path='/add' element={<Add userInfor={userInfor} />} />
             <Route path='/search' element={<Search />} />
             <Route path='/user' element={<User />} />
             <Route path='/' element={<Login setLoginSuccess={setLoginSuccess} />} />
             <Route path='/assign' element={<Assign />} />
           </Routes>
+          {loginSuccess &&
+            <Footer style={{ height: '5vh' }} />
+          }
         </Router>
       </div>
-      {loginSuccess &&
-      <Footer style={{ height: '5vh' }} />
-}
     </div>
   );
 }

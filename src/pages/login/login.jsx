@@ -4,13 +4,15 @@ import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 export const Card = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction : column;
-    height: 100vh;
+    height: 95vh;
 
 `;
 
@@ -51,10 +53,13 @@ export const LoginBtn = styled.button`
 // unactivated button color: #acd5e8
 
 
-function Login() {
+function Login({setLoginSuccess}) {
     const [isDisable, setIsDisable] = useState("disabled");
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
+    const [isSuccess, setIsSuccess] = useState('');
+    const [show, setShow] = useState(false);
+    const [isUser, setIsUser] = useState({});
     const navigate = useNavigate();
 
     const UserList = [
@@ -81,20 +86,37 @@ function Login() {
     }
 
     const checkUser = () => {
+        setShow(true);     // 로그인 버튼 클릭한 경우 모달 열기
         const user = {
-            "userId" : id,
+            "userId": id,
             "password": password,
         };
-        const isUser = UserList.find(item => JSON.stringify(item) === JSON.stringify(user));
-        if (isUser) {
-            navigate('/home');
+        const findUser = UserList.find(item => JSON.stringify(item) === JSON.stringify(user));
+        setIsUser(findUser);
+
+        if (findUser) {
+            setIsSuccess('로그인되었습니다.');
+
         }
         else {
+            setIsSuccess('로그인 정보가 올바르지 않습니다.');
         }
     }
 
-    useEffect (() => {
-        if(id && password) {
+
+    const handleClose = (next) => {
+        if (next) {
+            setLoginSuccess(true);
+            navigate('/home');
+
+        }
+        else {
+            setShow(false);
+        }
+    }
+
+    useEffect(() => {
+        if (id && password) {
             setIsDisable("");
         }
         else {
@@ -117,13 +139,28 @@ function Login() {
                             <Form.Control type="email" placeholder="name@example.com" onChange={changeId} />
                         </FloatingLabel>
                         <FloatingLabel controlId="floatingPassword" label="비밀번호" id="floatingLabel" >
-                            <Form.Control type="password" placeholder="Password" onChange={changePassword}/>
+                            <Form.Control type="password" placeholder="Password" onChange={changePassword} />
                         </FloatingLabel>
 
                     </form>
                     <LoginBtn disabled={isDisable} onClick={checkUser}>로그인</LoginBtn>
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>로그인</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>{isSuccess}</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={() => handleClose(false)}>
+                                닫기
+                            </Button>
+                            {isUser && <Button variant="primary" onClick={() => handleClose(true)}> {/*  로그인 성공한 경우에만 표시 */}
+                                확인
+                            </Button>}
+                        </Modal.Footer>
+                    </Modal>
 
                     <button style={{ background: "transparent", border: "none", fontSize: "0.8rem" }}>비밀번호를 잊으셨나요?</button>
+
                 </div>
 
             </LoginCard>

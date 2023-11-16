@@ -51,7 +51,7 @@ function User() {
         setUserData(response.data);
       } catch (error) {
         console.error("유저 데이터 가져오기 실패:", error);
-        // 에러 처리
+        
       }
     };
 

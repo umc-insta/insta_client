@@ -18,10 +18,6 @@ const Left = styled.div`
   display: flex;
 `;
 
-const Right = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
 
 
 const UserProfile = styled.div`
@@ -134,33 +130,33 @@ function User() {
         </div>
         <hr />
         <Topbar style={{ color: "gray", justifyContent: "space-around" }}>
-          <Left>
+          <div>
             <p>게시물</p>
-          </Left>
-          <Left>
+          </div>
+          <div>
             <p>팔로우</p>
-          </Left>
-          <Right>
+          </div>
+          <div>
             <p>팔로워</p>
-          </Right>
+          </div>
         </Topbar>
         <Topbar style={{ justifyContent: "space-around" }}>
-          <Left>
-            <p>10</p>
-          </Left>
-          <Left>
+          <div>
+            <p>6</p>
+          </div>
+          <div>
             <p>0</p>
-          </Left>
-          <Right>
+          </div>
+          <div>
             <p>0</p>
-          </Right>
+          </div>
         </Topbar>
         <hr style={{ color: "gray" }} />
         <div
           style={{
             display: "flex",
             justifyContent: "space-around",
-            margin: "10px"
+            margin: "3%"
           }}
         >
           <TransparentBtn>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Pictures from '../../component/Pictures';
+import { useNavigate } from 'react-router-dom';
 
 const Body = styled.div`
 `;
@@ -22,13 +23,13 @@ const Left = styled.div`
 
 const UserProfile = styled.div`
   display: flex;
-  justify-content: space-around;
-  margin: 20px; 
+  padding: 0 40% 0 40%; 
+  justify-content: center;
 `;
 
 const ProfileImage = styled.img`
-  width: 150px; 
-  height: 150px; 
+  width: 100px; 
+  height: 100px; 
   border-radius: 50%;
   margin-right: 30px; 
   border-style: solid;
@@ -37,6 +38,15 @@ const ProfileImage = styled.img`
 const TransparentBtn = styled.button`
   background: none;
   border: none;
+`;
+
+const DivBox = styled.div`
+  flex-direction: column;
+
+  &>p {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 function User() {
@@ -57,6 +67,8 @@ function User() {
 
     fetchUserData();
   }, []); */
+  const navigate = useNavigate();
+ 
 
   return (
     <Body>
@@ -71,6 +83,7 @@ function User() {
               width: "10vw",
               height: "10vh"
             }}
+            onClick={() => navigate(-1)}
           >
             <img
               style={{ width: "50%", height: "30%" }}
@@ -124,39 +137,31 @@ function User() {
           </div>
         </UserProfile>
         <div>
-          <p style = {{display : "flex" ,justifyContent: "flex-end",marginRight:"20%"}}>
+          <p style = {{display : "flex" ,justifyContent: "flex-end",marginRight:"12%"}}>
             <b>userData.usernickname</b>
           </p>
         </div>
         <hr />
         <Topbar style={{ color: "gray", justifyContent: "space-around" }}>
-          <div>
+          <DivBox>
             <p>게시물</p>
-          </div>
-          <div>
-            <p>팔로우</p>
-          </div>
-          <div>
-            <p>팔로워</p>
-          </div>
-        </Topbar>
-        <Topbar style={{ justifyContent: "space-around" }}>
-          <div>
             <p>6</p>
-          </div>
-          <div>
+          </DivBox>
+          <DivBox>
+            <p>팔로우</p>
             <p>0</p>
-          </div>
-          <div>
+          </DivBox>
+          <DivBox>
+            <p>팔로워</p>
             <p>0</p>
-          </div>
+          </DivBox>
         </Topbar>
         <hr style={{ color: "gray" }} />
         <div
           style={{
             display: "flex",
             justifyContent: "space-around",
-            margin: "3%"
+            margin:"5% 0 5% 0"
           }}
         >
           <TransparentBtn>

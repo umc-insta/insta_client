@@ -16,6 +16,7 @@ function Assign() {
     const [password, setPassword] = useState('');
     const [show, setShow] = useState(false);
     const [user, setUser] = useState({});
+    const role = "USER";
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -40,9 +41,10 @@ function Assign() {
     const addUser = () => {
         const newUser = {
             "userId": id,
-            "usernickname": nickName,
-            "username": userName,
             "password": password,
+            "role": role,
+            "username": userName,
+            "usernickname": nickName,
         }
 
         setUser(newUser);

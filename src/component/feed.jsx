@@ -47,7 +47,6 @@ const Feed = ({ UserProfile }) => {
     const [showComment, setShowComment] = useState(false);
 
 
-    const nickname = UserProfile.nickname;
     const maxLength = 10;
     const text = UserProfile.content;
 
@@ -68,13 +67,13 @@ const Feed = ({ UserProfile }) => {
                 <Top>
                     <Div>
                         <img src={UserProfile.profileSrc} style={{ height: "2rem", width: "2rem", borderRadius: "100%", margin: "0 5% 0 5%" }}></img>
-                        <p style={{ margin: "0", fontSize: "1.2rem"}}>{UserProfile.nickname}</p>
+                        <p style={{ margin: "0", fontSize: "1.2rem"}}>{UserProfile.userNickName}</p>
                     </Div>
                     <Div>
                         <img src="./icons/threeDot.png" style={{ height: "1rem", width: "1rem", paddingRight: "5%" }} />
                     </Div>
                 </Top>
-                <img src={UserProfile.photo_url} style={{ width: "100%", maxHeight: "50vh" }} />
+                <img src={UserProfile.imageUrl} style={{ width: "100%", maxHeight: "50vh" }} />
                 <Bottom>
                     <Div>
                         <img src={image} style={{ height: "3vh", marginRight: "20%" }} onClick={changeFavorite} />
@@ -86,7 +85,7 @@ const Feed = ({ UserProfile }) => {
                     </Div>
                 </Bottom>
                 <Content>
-                    <span style={{ fontWeight: "bold" }}>{nickname}{'  '}</span>
+                    <span style={{ fontWeight: "bold" }}>{UserProfile.userNickName}{'  '}</span>
                     <span style={{ margin: "0" }}>{displayText}</span>
                     {!showFullText && text.length > maxLength && (
                         <Button onClick={() => setShowFullText(true)}>...더보기</Button>

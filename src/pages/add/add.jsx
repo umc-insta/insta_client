@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Topbar = styled.div`
     height: 5vh;
@@ -27,6 +28,7 @@ function Add({userInfor}) {
     const [imgFile, setImgFile] = useState("");
     const imgRef = useRef();
     const [cont, setCont] = useState('');
+    const navigate = useNavigate();
 
     function handleFileSelect(event) {
         const file = imgRef.current.files[0];
@@ -51,15 +53,13 @@ function Add({userInfor}) {
     return (
         <div>
             <Topbar>
-                <Link to="/">
-                    <p style={{ margin: "0.5rem", display: "inline" }}>X</p>
-                </Link>
+                    <p style={{ margin: "0.5rem", display: "inline" }} onClick={() => navigate(-1)}>X</p>
                 <span>새 게시물</span>
                 <span style={{ marginRight: "3%" }}>공유하기</span>
             </Topbar>
-            {!imgFile && <form>
-                <label htmlFor="profileImg">이미지 선택</label>
-                <input type="file" accept='image/*' onChange={handleFileSelect} style={{ display: "none" }} id="profileImg" ref={imgRef} />
+            {!imgFile && <form style={{marginLeft: "5%", width: "70vh", height:"10vh"}}>
+                <label htmlFor="profileImg" style={{width: "100%", height:"100%"}}>이미지 선택</label>
+                <input type="file" accept='image/*' onChange={handleFileSelect} style={{ display: "none",width: "100%", height:"100%" }} id="profileImg" ref={imgRef} />
             </form>}
             {imgFile && <div style={{display: "flex", alignItems:"flex-start"}}>
                 <img src={userInfor.userProfileUrl} style={{ height: "2.5rem", width: "2.5rem", borderRadius: "100%", margin: "0 2% 0 2%" }}/>

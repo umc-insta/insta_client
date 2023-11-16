@@ -67,7 +67,7 @@ const CommentList = ({ UserProfile, setShowComment }) => {
                     )
                 })}
                 <Bottom>
-                    <img src={UserProfile.profileSrc} style={{width: "2rem", height: "2rem", borderRadius: "100%", margin:"0 0.5rem 0 0.5rem"}}></img>
+                    <img src={UserProfile.profileSrc} alt="default" style={{width: "2rem", height: "2rem", borderRadius: "100%", margin:"0 0.5rem 0 0.5rem"}}></img>
                     <input type="text" style={{width: "70%", marginRight: "0.5rem"}} id="inputField"></input>
                     <button style={{width: "3rem"}} onClick={saveInputValue}>게시</button>
                 </Bottom>

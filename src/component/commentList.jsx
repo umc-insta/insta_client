@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Div = styled.div`
     position: fixed;
@@ -30,11 +30,23 @@ const Bottom = styled.div`
 `;
 
 const CommentList = ({ UserProfile, setShowComment }) => {
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState({});
+
     const saveInputValue = () => {
         var input = document.getElementById('inputField').value;
-        setInputValue(input);
+        setInputValue({
+            "comment_id": '103',
+            "username": 'comment_user3',
+            "text": input,
+        });
     }
+
+    useEffect(() => {
+        if((inputValue.text !== null)) {
+            UserProfile.comments.push(inputValue);
+            console.log("UserProfile", UserProfile.comments);
+        }
+    }, [inputValue])
 
     return (
         <Div>

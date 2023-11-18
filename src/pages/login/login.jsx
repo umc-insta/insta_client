@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import axios from "axios";
 
 export const Card = styled.div`
     display: flex;
@@ -77,42 +78,46 @@ function Login({setLoginSuccess}) {
         },
     ];
 
-    const changeId = (event) => {
-        setId(event.target.value);
-    }
+    const checkUser = async (e) => {
+        e.preventDefault();
 
-    const changePassword = (event) => {
-        setPassword(event.target.value);
-    }
-
-    const checkUser = () => {
-        setShow(true);     // 로그인 버튼 클릭한 경우 모달 열기
-        const user = {
-            "userId": id,
-            "password": password,
-        };
-        const findUser = UserList.find(item => JSON.stringify(item) === JSON.stringify(user));
-        setIsUser(findUser);
-
-        if (findUser) {
-            setIsSuccess('로그인되었습니다.');
-
-        }
-        else {
+        const axiosInstance = axios.create({
+            baseURL: "http://15.165.161.132:8080/",
+          });
+          try {
+            const response = await axiosInstance.post("/api/auth/login", {
+              userId: id,
+              password: password,
+            });
+            console.log(response);
+            const authToken = response.data.accessToken;
+            localStorage.setItem("access_token", authToken);
+      
+            const config = {
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+            };
+      
+            const infoResponse = await axiosInstance.get("/api/auth/info", config);
+            console.log("access token 값" + authToken);
+            console.log(infoResponse.data);
+            //console.log(infoResponse.data.memberRole);
+            alert(id + "(" + infoResponse.data.memberRole + ")" + "님 환영합니다");
+      
+            setLoginSuccess(true)
+            navigate("/home");
+          } catch (error) {
             setIsSuccess('로그인 정보가 올바르지 않습니다.');
-        }
+          }
+        
+        // const findUser = UserList.find(item => JSON.stringify(item) === JSON.stringify(user));
+        // setIsUser(findUser);
     }
 
 
     const handleClose = (next) => {
-        if (next) {
-            setLoginSuccess(true);
-            navigate('/home');
-
-        }
-        else {
             setShow(false);
-        }
     }
 
     useEffect(() => {
@@ -136,26 +141,23 @@ function Login({setLoginSuccess}) {
                             className="mb-3"
                             id="floatingLabel"
                         >
-                            <Form.Control type="email" placeholder="name@example.com" onChange={changeId} />
+                            <Form.Control type="email" placeholder="name@example.com" onChange={(e)=>setId(e.target.value)} />
                         </FloatingLabel>
                         <FloatingLabel controlId="floatingPassword" label="비밀번호" id="floatingLabel" >
-                            <Form.Control type="password" placeholder="Password" onChange={changePassword} />
+                            <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
                         </FloatingLabel>
 
                     </form>
-                    <LoginBtn disabled={isDisable} onClick={checkUser}>로그인</LoginBtn>
+                    <LoginBtn type="submit" disabled={isDisable} onClick={checkUser}>로그인</LoginBtn>
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                             <Modal.Title>로그인</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>{isSuccess}</Modal.Body>
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={() => handleClose(false)}>
+                            <Button variant="secondary" onClick={() => handleClose()}>
                                 닫기
                             </Button>
-                            {isUser && <Button variant="primary" onClick={() => handleClose(true)}> {/*  로그인 성공한 경우에만 표시 */}
-                                확인
-                            </Button>}
                         </Modal.Footer>
                     </Modal>
 

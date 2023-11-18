@@ -17,21 +17,21 @@ const Topbar = styled.div`
 
 const Left = styled.div`
   display: flex;
+  justify-content: flex-end;
 `;
 
 
 
 const UserProfile = styled.div`
   display: flex;
-  padding: 0 40% 0 40%; 
-  justify-content: center;
+  justify-content: space-evenly;
 `;
 
 const ProfileImage = styled.img`
-  width: 100px; 
+  width: 120px; 
   height: 100px; 
   border-radius: 50%;
-  margin-right: 30px; 
+  margin-right: 10px; 
   border-style: solid;
   border-color: #e2e2e2;
 `;
@@ -39,14 +39,34 @@ const TransparentBtn = styled.button`
   background: none;
   border: none;
 `;
-
+const CircleBox = styled.div`
+  margin: -2% 2% -2% 2%;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  align-items:center;
+`;
 const DivBox = styled.div`
   flex-direction: column;
-
+  margin-top: 0px;
+  margin-bottom: 0px;
   &>p {
     display: flex;
     justify-content: center;
+    margin-top: 0px;
+  margin-bottom: 0px;
   }
+  & p.number{
+    color:black;
+  }
+`;
+
+const Circle = styled.img`
+width: 60px; 
+height: 50px; 
+border-radius: 50%;
+border-style: solid;
+border-color: #e2e2e2;
 `;
 
 function User() {
@@ -69,7 +89,7 @@ function User() {
   }, []); */
   const navigate = useNavigate();
  
-
+//style={{borderStyle:"solid"}}
   return (
     <Body>
       <Topbar>
@@ -92,11 +112,38 @@ function User() {
             />
           </button>
         </Left>
+        <div style = {{display:"flex",
+              justifyContent:"flex-end"}}>
+        <button
+            style={{
+              background: "none",
+              border: "none",
+              margin: "-10% 20% -10%  20%",
+              width:"10vw",
+              height:"10vh"
+            }}/>
+            <img
+              style={{ width: "7%", height: "7%" }}
+              src="./user_icons/free-icon-notification-bell.png"
+              alt="알림"
+            />
+        <button
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0
+            }}/>
+            <img
+              style={{ width: "7%", height: "6%" }}
+              src="./user_icons/free-icon-more.png"
+              alt="더보기"
+            />
+        </div>
       </Topbar>
       <div>
-        <UserProfile>
+      <UserProfile>
           <div>
-            <ProfileImage src={"./user_icons/user (1).png"} alt="Profile" />
+            <ProfileImage src={"./user_pictures/강아지.jpg"} alt="Profile" />
           </div>
           <div>
             <h2>userData.username</h2>
@@ -108,7 +155,7 @@ function User() {
                 borderRadius: "10px"
               }}
             >
-              팔로잉
+              팔로우
             </button>
             <button
               style={{
@@ -136,24 +183,38 @@ function User() {
             </button>
           </div>
         </UserProfile>
-        <div>
-          <p style = {{display : "flex" ,justifyContent: "flex-end",marginRight:"12%"}}>
+        <div style ={{display:"flex",justifyContent:"center"}}>
+          <p style = {{display : "flex" ,justifyContent: "flex-end",marginLeft:"28%"}}>
             <b>userData.usernickname</b>
           </p>
         </div>
+        <div style= {{display:"flex", margin:"0 2% 0 2%"}}>
+          <CircleBox>
+            <Circle src="./user_pictures/story1.jpeg"/>
+            <p>cat</p>
+          </CircleBox>
+          <CircleBox>
+            <Circle src="./user_pictures/story1.jpeg"/>
+            <p>dog</p>
+          </CircleBox>
+          <CircleBox>
+            <Circle src="./user_pictures/story1.jpeg"/>
+            <p>catt</p>
+          </CircleBox>
+        </div>
         <hr />
-        <Topbar style={{ color: "gray", justifyContent: "space-around" }}>
+        <Topbar style={{ color: "gray", justifyContent: "space-around",alignItems:"flex-start",paddingTop: "0",paddingBottom: "0" }}>
           <DivBox>
             <p>게시물</p>
-            <p>6</p>
-          </DivBox>
-          <DivBox>
-            <p>팔로우</p>
-            <p>0</p>
+            <p class = "number">6</p>
           </DivBox>
           <DivBox>
             <p>팔로워</p>
-            <p>0</p>
+            <p class = "number">0</p>
+          </DivBox>
+          <DivBox>
+            <p>팔로우</p>
+            <p class = "number">0</p>
           </DivBox>
         </Topbar>
         <hr style={{ color: "gray" }} />
@@ -161,7 +222,8 @@ function User() {
           style={{
             display: "flex",
             justifyContent: "space-around",
-            margin:"5% 0 5% 0"
+            margintop: "0",
+            marginBottom: "3%"
           }}
         >
           <TransparentBtn>

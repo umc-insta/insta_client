@@ -83,8 +83,16 @@ function Add({ user }) {
         } catch (error) {
             console.error('이미지 업로드 에러:', error);
         }
-
     }
+
+    function changeCont (event) {
+        setCont(event.target.value);
+    
+    }
+
+    useEffect (() => {
+        console.log(cont);
+    }, [cont])
 
     return (
         <div>

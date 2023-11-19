@@ -86,7 +86,7 @@ function User({user}) {
       try {
         const userLoginId = user.userLoginId; 
         const axiosInstance = axios.create({
-          baseURL: "http://3.35.11.221:8080/",
+          baseURL: "http://3.35.11.221:8080",
       });
       const response = await axiosInstance.get(`/api/auth/users/${userLoginId}`);
         console.log("user: ", response.data);
@@ -158,7 +158,7 @@ function User({user}) {
             <ProfileImage src={"./user_pictures/강아지.jpg"} alt="Profile" />
           </div>
           <div>
-            <h2>{userData.userDto.userName}</h2>
+            <h2 style = {{marginLeft:"4%"}}>{userData.userDto.userNickname}</h2>
             <button
               style={{
                 border: "none",
@@ -201,11 +201,6 @@ function User({user}) {
         </div>
           </div>
         </UserProfile>
-        <div style ={{display:"flex",justifyContent:"center"}}>
-          <p style = {{display : "flex" ,justifyContent: "flex-end",marginLeft:"28%"}}>
-            <b>{userData.userDto.userNickname}</b>
-          </p>
-        </div>
         <div style= {{display:"flex", margin:"0 2% 0 2%"}}>
           <CircleBox>
             <Circle src="./user_pictures/story1.jpeg"/>
@@ -267,5 +262,6 @@ function User({user}) {
     </Body>
   );
 }
+
 
 export default User;

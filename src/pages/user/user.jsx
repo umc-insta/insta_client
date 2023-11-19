@@ -70,26 +70,38 @@ border-color: #e2e2e2;
 `;
 
 function User() {
-  /*const [userData, setUserData] = useState({ posts: [] });
+  const [userData, setUserData] = useState({
+    userDto: {
+      userLoginId: "",
+      userNickname: "",
+      profileImage: null,
+      userName: ""
+    },
+    postResponseDtos: []
+  });
+  
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(
-          "http://umc.aolda.net/GET/user/profile/{user_id}"
-        );
+        const userLoginId = "sangjunPark"; 
+        const axiosInstance = axios.create({
+          baseURL: "http://15.165.161.132:8080/",
+      });
+      const response = await axiosInstance.get(`/api/auth/users/${userLoginId}`);
+        console.log("user: ", response.data);
         setUserData(response.data);
       } catch (error) {
         console.error("유저 데이터 가져오기 실패:", error);
         
       }
     };
-
+    console.log(userData);
     fetchUserData();
-  }, []); */
+  }, []); 
+
   const navigate = useNavigate();
- 
-//style={{borderStyle:"solid"}}
+
   return (
     <Body>
       <Topbar>
@@ -146,7 +158,7 @@ function User() {
             <ProfileImage src={"./user_pictures/강아지.jpg"} alt="Profile" />
           </div>
           <div>
-            <h2>userData.username</h2>
+            <h2>{userData.userDto.userName}</h2>
             <button
               style={{
                 border: "none",
@@ -185,7 +197,7 @@ function User() {
         </UserProfile>
         <div style ={{display:"flex",justifyContent:"center"}}>
           <p style = {{display : "flex" ,justifyContent: "flex-end",marginLeft:"28%"}}>
-            <b>userData.usernickname</b>
+            <b>{userData.userDto.userNickname}</b>
           </p>
         </div>
         <div style= {{display:"flex", margin:"0 2% 0 2%"}}>
@@ -244,8 +256,7 @@ function User() {
             />
           </TransparentBtn>
         </div>
-        <Pictures></Pictures>
-        {/*<Pictures posts = {userData.posts}></Pictures> */}
+        <Pictures posts = {userData.postResponseDtos}></Pictures>
       </div>
     </Body>
   );

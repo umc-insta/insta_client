@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -22,35 +23,14 @@ const Picture = styled.img`
 `;
 
 export default function Pictures(props) {
-  const posts = [{
-    postid: "12348",
-    thumbnail: "./user_pictures/고양이.png"
-},
-{
-  postid: "12349",
-      thumbnail: "./user_pictures/고양이.png"  
-},{
-  postid: "12348",
-  thumbnail: "./user_pictures/고양이.png"
-},
-{
-postid: "12349",
-    thumbnail: "./user_pictures/고양이.png"  
-},{
-  postid: "12348",
-  thumbnail: "./user_pictures/고양이.png"
-},
-{
-postid: "12349",
-    thumbnail: "./user_pictures/고양이.png"  
-}]
+  const posts = props.posts;
 console.log("ji");
 
   return (
     <Container>
       {posts.map((post, index) => (
         <PictureContainer key={index}>
-          <Picture src={post.thumbnail} alt={post.postid} />
+          <Picture src={post.imageUrl} alt={post.postId} />
         </PictureContainer>
 ))
 }

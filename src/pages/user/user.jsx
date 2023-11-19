@@ -158,7 +158,7 @@ function User() {
             <ProfileImage src={"./user_pictures/강아지.jpg"} alt="Profile" />
           </div>
           <div>
-            <h2>{userData.userDto.userName}</h2>
+            <h2 style = {{marginLeft:"4%"}}>{userData.userDto.userNickname}</h2>
             <button
               style={{
                 border: "none",
@@ -193,13 +193,14 @@ function User() {
                 alt = ""
               />
             </button>
-          </div>
-        </UserProfile>
-        <div style ={{display:"flex",justifyContent:"center"}}>
-          <p style = {{display : "flex" ,justifyContent: "flex-end"}}>
-            <b>{userData.userDto.userNickname}</b>
+          <div style ={{display:"flex",justifyContent:"flex-start"}}>
+          <p style = {{marginTop:"2%",
+        marginLeft:"2%"}}>
+            <b>{userData.userDto.userName}</b>
           </p>
         </div>
+          </div>
+        </UserProfile>
         <div style= {{display:"flex", margin:"0 2% 0 2%"}}>
           <CircleBox>
             <Circle src="./user_pictures/story1.jpeg"/>

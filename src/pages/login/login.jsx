@@ -63,30 +63,15 @@ function Login({setLoginSuccess}) {
     const [isUser, setIsUser] = useState({});
     const navigate = useNavigate();
 
-    const UserList = [
-        {
-            "userId": "1234",
-            "password": "qwer",
-        },
-        {
-            "userId": "qwer",
-            "password": "1234",
-        },
-        {
-            "userId": "q1w2e3r4",
-            "password": "q1w2e3r4",
-        },
-    ];
-
     const checkUser = async (e) => {
-        e.preventDefault();
+        e.preventDefault();   //form에서 onSubmit했을 때 바로 새로운 페이지로 연결되는 것을 막는 event
 
         const axiosInstance = axios.create({
-            baseURL: "http://15.165.161.132:8080/",
+            baseURL: "http://3.35.11.221:8080",
           });
           try {
             const response = await axiosInstance.post("/api/auth/login", {
-              userId: id,
+              userLoginId: id,
               password: password,
             });
             console.log(response);

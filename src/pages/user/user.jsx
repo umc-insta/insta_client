@@ -86,7 +86,7 @@ function User() {
       try {
         const userLoginId = "sangjunPark"; 
         const axiosInstance = axios.create({
-          baseURL: "http://15.165.161.132:8080/",
+          baseURL: "http://3.35.11.221:8080",
       });
       const response = await axiosInstance.get(`/api/auth/users/${userLoginId}`);
         console.log("user: ", response.data);
@@ -196,7 +196,7 @@ function User() {
           </div>
         </UserProfile>
         <div style ={{display:"flex",justifyContent:"center"}}>
-          <p style = {{display : "flex" ,justifyContent: "flex-end",marginLeft:"28%"}}>
+          <p style = {{display : "flex" ,justifyContent: "flex-end"}}>
             <b>{userData.userDto.userNickname}</b>
           </p>
         </div>

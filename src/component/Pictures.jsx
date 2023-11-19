@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -24,16 +25,22 @@ const Picture = styled.img`
 
 export default function Pictures(props) {
   const posts = props.posts;
-console.log("ji");
+  const navigate = useNavigate();
+
+  const clickPost = (post) => {
+    navigate(`/user/${post.postId}`, {
+      state: { post },
+  });
+  }
 
   return (
     <Container>
       {posts.map((post, index) => (
         <PictureContainer key={index}>
-          <Picture src={post.imageUrl} alt={post.postId} />
+            <Picture src={post.imageUrl} alt={post.postId} onClick={() => clickPost(post)} />
         </PictureContainer>
-))
-}
+      ))
+      }
     </Container>
   );
 }

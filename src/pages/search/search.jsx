@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { setSelectionRange } from '@testing-library/user-event/dist/utils';
+import axios from "axios";
 
 const Div = styled.div`
     display: flex;
@@ -30,60 +30,60 @@ const Button = styled.button`
     align-items: center;
 `;
 
-function Search() {
+function Search({ user }) {
     const [userNickName, setUserNickName] = useState('');
     const [searchList, setSearchList] = useState([]);
-
-    const userList = {
-        "users": [
-            {
-                "profileSrc": "./suzy/suzy_profile.jpeg",
-                "user_id": "john_doe",
-                "user_nickname": "jone"
-            },
-            {
-                "profileSrc": "./suzy/suzy_profile.jpeg",
-                "user_id": "johnny123",
-                "user_nickname": "johnny",
-            },
-            {
-                "profileSrc": "./suzy/suzy_profile.jpeg",
-                "user_id": "big_john",
-                "user_nickname": "big_john"
-            },
-            {
-                "profileSrc": "./suzy/suzy_profile.jpeg",
-                "user_id": "juu.n_s__",
-                "user_nickname": "홍준서"
-            }
-            // ... 해당 키워드를 포함하는 다른 유저 아이디들
-        ]
-    }
+    const [userList, setUserList] = useState(null);
 
     function changeUserNickName(event) {
         setUserNickName(event.target.value);
     }
 
     useEffect(() => {
-        const filteredList = userList.users.filter(user => user.user_id.includes(userNickName));
-        setSearchList(filteredList);
-        console.log(searchList);
+
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://3.35.11.221:8080/api/auth/users/search", {
+                    params: {
+                        userLoginId: user.userLoginId,
+                    }
+                });
+
+
+                console.log("userList: ", response.data);
+                setUserList(response.data);
+            }
+            catch (error) {
+                console.log("dfdf", error);
+            }
+        }
+
+        fetchData();
+
+    }, []);
+
+
+    useEffect(() => {
+        if (userList) {
+            const filteredList = userList.users.filter(user => user.userNickname.includes(userNickName));
+            setSearchList(filteredList);
+        }
 
     }, [userNickName])
 
     return (
         <div>
             <Div>
-                <img src="./icons/magnifying.png" style={{ width: "5vw", height: "5wh", marginRight: "2%" }} />
+                <img src="./icons/magnifying.png" alt="magnifying" style={{ width: "5vw", height: "5wh", marginRight: "2%" }} />
                 <Input type="text" placeholder="검색" onChange={changeUserNickName}></Input>
             </Div>
             {userNickName && searchList.map((user, index) => {
                 return (
                     <Button key={index}>
-                        <img src={user.profileSrc} style={{ height: "3rem", width: "3rem", borderRadius: "100%", margin: "0 5% 0 5%" }}></img>
+                        <img src='icons/user.png' alt="user" style={{ height: "3rem", width: "3rem", borderRadius: "100%", margin: "0 5% 0 5%" }}></img>
                         <div>
-                            <p style={{margin : 0 }}>{user.user_id}</p>
-                            <p style={{margin : 0, color: "gray", display: "flex", alignItems: "flex-start", opacity: 0.7}}>{user.user_nickname}</p>
+                            <p style={{ margin: 0 }}>{user.userNickname}</p>
+                            <p style={{ margin: 0, color: "gray", display: "flex", alignItems: "flex-start", opacity: 0.7 }}>{user.userName}</p>
                         </div>
                     </Button>
                 )

@@ -54,13 +54,12 @@ export const LoginBtn = styled.button`
 // unactivated button color: #acd5e8
 
 
-function Login({setLoginSuccess}) {
+function Login({ setUser }) {
     const [isDisable, setIsDisable] = useState("disabled");
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [isSuccess, setIsSuccess] = useState('');
     const [show, setShow] = useState(false);
-    const [isUser, setIsUser] = useState({});
     const navigate = useNavigate();
 
     const checkUser = async (e) => {
@@ -90,7 +89,8 @@ function Login({setLoginSuccess}) {
             //console.log(infoResponse.data.memberRole);
             alert(id + "(" + infoResponse.data.memberRole + ")" + "님 환영합니다");
       
-            setLoginSuccess(true)
+            setUser(infoResponse.data);
+
             navigate("/home");
           } catch (error) {
             setIsSuccess('로그인 정보가 올바르지 않습니다.');
@@ -98,11 +98,6 @@ function Login({setLoginSuccess}) {
         
         // const findUser = UserList.find(item => JSON.stringify(item) === JSON.stringify(user));
         // setIsUser(findUser);
-    }
-
-
-    const handleClose = (next) => {
-            setShow(false);
     }
 
     useEffect(() => {
@@ -134,13 +129,13 @@ function Login({setLoginSuccess}) {
 
                     </form>
                     <LoginBtn type="submit" disabled={isDisable} onClick={checkUser}>로그인</LoginBtn>
-                    <Modal show={show} onHide={handleClose}>
+                    <Modal show={show} onHide={() => setShow(false)}>
                         <Modal.Header closeButton>
                             <Modal.Title>로그인</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>{isSuccess}</Modal.Body>
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={() => handleClose()}>
+                            <Button variant="secondary" onClick={() => setShow(false)}>
                                 닫기
                             </Button>
                         </Modal.Footer>

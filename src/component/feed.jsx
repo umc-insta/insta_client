@@ -43,21 +43,21 @@ const Button = styled.button`
 
 const Feed = ({ UserProfile }) => {
     const [showFullText, setShowFullText] = useState(false);
-    const [image, setImage] = useState('./icons/heartBorder.png');
+    const [image, setImage] = useState('/icons/heartBorder.png');
     const [showComment, setShowComment] = useState(false);
 
 
-    const maxLength = 10;
+    const maxLength = 12;
     const text = UserProfile.content;
 
 
     const displayText = showFullText ? text : text.slice(0, maxLength);
 
     const changeFavorite = () => {
-        if (image === './icons/heartBorder.png')
-            setImage('./icons/heart.png');
+        if (image === '/icons/heartBorder.png')
+            setImage('/icons/heart.png');
         else {
-            setImage('./icons/heartBorder.png');
+            setImage('/icons/heartBorder.png');
         }
     };
 
@@ -66,22 +66,22 @@ const Feed = ({ UserProfile }) => {
             <div>
                 <Top>
                     <Div>
-                        <img src={UserProfile.profileSrc} style={{ height: "2rem", width: "2rem", borderRadius: "100%", margin: "0 5% 0 5%" }}></img>
-                        <p style={{ margin: "0", fontSize: "1.2rem"}}>{UserProfile.userNickName}</p>
+                        <img src={UserProfile.profileSrc ? UserProfile.profileSrc : '/icons/user.png'} alt="user" style={{ height: "2rem", width: "2rem", borderRadius: "100%", marginRight: "15%" }}></img>
+                        <p style={{ margin: "0", fontSize: "1.2rem" }}>{UserProfile.userNickName}</p>
                     </Div>
                     <Div>
-                        <img src="./icons/threeDot.png" style={{ height: "1rem", width: "1rem", paddingRight: "5%" }} />
+                        <img src="/icons/threeDot.png" alt="threedot" style={{ height: "1rem", width: "1rem", paddingRight: "5%" }} />
                     </Div>
                 </Top>
-                <img src={UserProfile.imageUrl} style={{ width: "100%", maxHeight: "50vh" }} />
+                <img src={UserProfile.imageUrl} alt="feedImage" style={{ width: "100%", maxHeight: "50vh" }} />
                 <Bottom>
                     <Div>
-                        <img src={image} style={{ height: "3vh", marginRight: "20%" }} onClick={changeFavorite} />
-                        <img src="./icons/speech_bubble.png" style={{ height: "3vh", marginRight: "20%" }} onClick={() => setShowComment(true)} />
-                        <img src="./icons/share.png" style={{ height: "3vh", marginRight: "20%" }} />
+                        <img src={image} alt="favorite" style={{ height: "3vh", marginRight: "20%" }} onClick={changeFavorite} />
+                        <img src="/icons/speech_bubble.png" alt="speech_bubble" style={{ height: "3vh", marginRight: "20%" }} onClick={() => setShowComment(true)} />
+                        <img src="/icons/share.png" alt="share" style={{ height: "3vh", marginRight: "20%" }} />
                     </Div>
                     <Div>
-                        <img src="./icons/bookmark.png" style={{ height: "3vh" }} />
+                        <img src="/icons/bookmark.png" alt="bookmark" style={{ height: "3vh" }} />
                     </Div>
                 </Bottom>
                 <Content>
@@ -92,7 +92,7 @@ const Feed = ({ UserProfile }) => {
                     )}
                 </Content>
             </div>
-            {showComment && <CommentList UserProfile={UserProfile} setShowComment={setShowComment}/>}
+            {showComment && <CommentList UserProfile={UserProfile} setShowComment={setShowComment} />}
         </div>
     )
 

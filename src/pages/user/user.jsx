@@ -69,7 +69,7 @@ border-style: solid;
 border-color: #e2e2e2;
 `;
 
-function User() {
+function User({user}) {
   const [userData, setUserData] = useState({
     userDto: {
       userLoginId: "",
@@ -84,9 +84,9 @@ function User() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userLoginId = "sangjunPark"; 
+        const userLoginId = user.userLoginId; 
         const axiosInstance = axios.create({
-          baseURL: "http://15.165.161.132:8080/",
+          baseURL: "http://3.35.11.221:8080/",
       });
       const response = await axiosInstance.get(`/api/auth/users/${userLoginId}`);
         console.log("user: ", response.data);
